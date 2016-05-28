@@ -1,0 +1,15 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: bnc_metrics_dev
+  pool: 5
+  username: bnc
+  password:
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: bnc_metrics_test
+  pool: 5
+  username: bnc
+  password:
