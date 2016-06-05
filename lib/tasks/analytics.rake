@@ -3,4 +3,9 @@ namespace :analytics do
   task twitter_load: :environment do
     AnalyticsIntegration::Twitter.populate_now
   end
+
+  desc "Load Facebook analytics (e.g. page like count) from API into Metrics DB"
+  task facebook_load: :environment do
+    AnalyticsIntegration::Facebook.populate_now
+  end
 end

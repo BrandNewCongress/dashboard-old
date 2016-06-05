@@ -27,8 +27,11 @@ gem 'autoprefixer-rails'
 # Web Server
 gem 'puma'
 
-# Neede for Twitter integration
+# Needed for Twitter integration
 gem 'oauth'
+
+# Facebook API
+gem "koala", "~> 2.2"
 
 # JS/CSS dependency management
 gem 'bower-rails', '~> 0.10.0'

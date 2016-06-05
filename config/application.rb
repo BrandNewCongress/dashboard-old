@@ -26,5 +26,7 @@ module BncMetrics
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
 
     config.autoload_paths += %W(#{config.root}/lib)
+
+    Koala.config.api_version = "v2.6"
   end
 end

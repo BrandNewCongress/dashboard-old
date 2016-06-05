@@ -6,17 +6,9 @@ module AnalyticsIntegration
     class << self
       def populate_now
         count = fetch_followers_count
-
-        metric = Metric.find_by_internal_name("twitter_followers")
-        mp = MetricPoint.where(datetime: utcized_eastern_time_date, metric: metric).first_or_initialize
-        mp.value = count
-        mp.save
+        AnalyticsIntegration::MetricsStorer.store('twitter_followers', count)
       end
     private
-      def utcized_eastern_time_date
-        eastern_time_date_str = ActiveSupport::TimeZone["America/New_York"].now.strftime("%Y-%m-%d")
-        DateTime.parse(eastern_time_date_str)
-      end
 
       def fetch_followers_count
         resp = create_access_token.request(:get, "https://api.twitter.com/1.1/users/show.json?screen_name=#{ENV['TWITTER_HANDLE']}")
