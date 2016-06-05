@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'main/index'
+  root 'main#index'
 
   resources :metrics
   resources :metric_points

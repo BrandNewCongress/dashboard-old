@@ -24,12 +24,15 @@ module Util
 
       extracted = SERIES.map {|s| { name: s, points: self.extract_serie(s, rows) } }
       extracted.each do |s|
-        m = Metric.new
+        internal_name = s[:name].parameterize.underscore # "Twitter Followers" -> "twitter_followers"
+
+        m = Metric.where(internal_name: internal_name).first_or_initialize
         m.name = s[:name]
+        m.internal_name = internal_name
         m.save
 
         s[:points].each do |p|
-          mp = MetricPoint.new
+          mp = MetricPoint.where(datetime: p[:datetime], metric: m).first_or_initialize
           mp.metric = m
           mp.datetime = p[:datetime]
           mp.value = p[:value]
