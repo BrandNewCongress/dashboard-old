@@ -47,7 +47,7 @@ module Util
       index = header_row.index(serie_name)
       rows[1..-1].map do |row|
         datetime = Date.strptime(row[0], "%m/%d/%Y")
-        value = BigDecimal.new(row[index].tr('/$,.', '')).to_f if row[index]
+        value = BigDecimal.new(row[index].tr('/$,', '')).to_f if row[index]
         { datetime: datetime, value: value } if value
       end.compact
     end

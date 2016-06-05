@@ -7,7 +7,7 @@
     figCont.appendTo($('#chart-cont'));
 
     $.getJSON('/metric_points/' + metric.id, function (series) {
-      new Morris.Line({
+      var opts = {
         // ID of the element in which to draw the chart.
         element: fig,
         // Chart data records -- each entry in this array corresponds to a point on
@@ -36,7 +36,11 @@
         ].sort(function() { return .5 - Math.random(); }),
         resize: true,
         redraw: true
-      });
+      };
+
+      opts.preUnits = metric.unit === 'dollars' ? '$' : '';
+
+      new Morris.Line(opts);
     });
   };
 
