@@ -8,4 +8,9 @@ namespace :analytics do
   task facebook_load: :environment do
     AnalyticsIntegration::Facebook.populate_now
   end
+
+  desc "Load NationBuilder analytics (e.g. donations) from API into Metrics DB"
+  task nb_load: :environment do
+    AnalyticsIntegration::NationBuilder.populate_now
+  end
 end
